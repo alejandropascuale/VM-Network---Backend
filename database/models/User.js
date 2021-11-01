@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
          primaryKey: true,
          autoincrement: true
     },
-     file: {
+     idEmployee: {
          type: DataTypes.INTEGER
     },
      names: {
