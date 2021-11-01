@@ -3,10 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const methodOverride = require('method-override');
+const session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiUsersRouter = require('./routes/apiRoutes/apiUsers');
+
+const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 
 var app = express();
 
@@ -23,6 +27,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/users', apiUsersRouter);
+
+app.use(methodOverride('_method'));
+app.use(session({
+  secret: 'Clave secreta',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(userLoggedMiddleware);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

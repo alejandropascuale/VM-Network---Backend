@@ -18,6 +18,35 @@ const controller = {
             avatar: defaultImageProfile,
         })
         return res.redirect('http://localhost:3000/');
+    },
+    loginUser: async (req, res) => {
+        const userToLogin = await db.User.findOne ({
+            where: {userName: req.body.userName}
+        })
+        if(userToLogin) {
+            let isOkThePassword = bcrypt.compareSync(req.body.password, userToLogin.password);
+            if (isOkThePassword) {
+                req.session.userLogged = userToLogin;
+                res.cookie('userEmail', user.email, { maxAge: (1000 * 60) * 60 })
+                return res.redirect('http://localhost:3000/');
+            }
+            return res.json({
+                oldData: req.body,
+                backendErrors: {
+                    password: {
+                        msg: 'Contraseña incorrecta'
+                    }
+                }
+            }); 
+        }
+        return res.json({
+            oldData: req.body,
+            backendErrors: {
+                email: {
+                    msg: 'Revisá tu email'
+                }
+            }
+        });
     }
 }
 
