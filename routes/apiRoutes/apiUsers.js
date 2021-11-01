@@ -6,6 +6,6 @@ const userApiController = require('../../controllers/apiControllers/usersApiCont
 // List all users
 router.get('/', userApiController.listUsers);
 // Create user
-router.post('/', userApiController.createUser);
+router.post('/register', userApiController.createUser);
 
 module.exports = router;

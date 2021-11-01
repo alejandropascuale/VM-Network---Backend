@@ -1,11 +1,11 @@
+const express = require('express');
+const router = express.Router ();
 const fetch = require('fetch-node');
 
 const controller = {
-    listUsers: async (req, res) => {
-        const usersApi = await (await fetch('http://localhost:3000/api/users')).json();
-    },
     createUser: async (req, res) => {
-        const usersCreate = await (await fetch('http://localhost:3000/api/users', {method: 'post', data: req.body})).json();
+        await (await fetch('http://localhost:3001/api/users/register')).json();
+        return res.redirect('http://localhost:3000/');
     }
 }
 

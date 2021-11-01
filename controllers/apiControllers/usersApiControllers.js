@@ -1,22 +1,23 @@
 const db = require ('../../database/models');
 const { Op } = require("sequelize");
+const bcrypt = require('bcryptjs');
 
 const controller = {
     listUsers: async (req, res) => {
         const usersApi = await db.User.findAll();
         return res.json(usersApi);
     },
-    createUser: async (req, res) => {
+    createUser: (req, res) => {
         const defaultImageProfile = '/images/avatars/user-avatar.jpg'
-        const userCreate = await db.User.create({
+        db.User.create({
             idEmployee: req.body.idEmployee,   
             names: req.body.names,
             userName: req.body.userName,   
             password: bcrypt.hashSync(req.body.password, 10),
-            perfil: 'usuario',
+            profile: 'usuario',
             avatar: defaultImageProfile,
         })
-        return res.json(userCreate);
+        return res.redirect('http://localhost:3000/');
     }
 }
 
