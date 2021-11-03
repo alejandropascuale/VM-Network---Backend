@@ -28,25 +28,9 @@ const controller = {
             if (isOkThePassword) {
                 req.session.userLogged = userToLogin;
                 res.cookie('userName', userToLogin.userName, { maxAge: (1000 * 60) * 60 })
-                return res.redirect('http://localhost:3000/');
+                return res.redirect('http://localhost:3000');
             }
-            return res.json({
-                oldData: req.body,
-                backendErrors: {
-                    password: {
-                        msg: 'Contraseña incorrecta'
-                    }
-                }
-            }); 
         }
-        return res.json({
-            oldData: req.body,
-            backendErrors: {
-                email: {
-                    msg: 'Revisá tu email'
-                }
-            }
-        });
     }
 }
 
