@@ -12,6 +12,6 @@ router.post('/Login', userApiController.loginUser);
 // Edit user
 router.put('/edit/:iduser', userApiController.loginUser);
 // get all receipts from user
-router.get('/receipts/:iduser', userApiController.receiptsUser);
+router.get('/receipts/:idEmployee', userApiController.receiptsUser);
 
 module.exports = router;

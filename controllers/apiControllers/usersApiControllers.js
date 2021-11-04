@@ -49,14 +49,14 @@ const controller = {
             userName: req.body.userName,   
             password: bcrypt.hashSync(req.body.password, 10)
         },
-        { where: {iduser: req.params.iduser}
+        { where: {iduser: req.params.idusers}
         })
         return res.json(editUser);
     }   
     },
     receiptsUser: async (req, res) => {
         const receiptsUser = await db.Receipts.findAll({
-            where: {id_user: req.params.iduser}
+            where: {id_user: req.params.idEmployee}
         })
         return res.json(receiptsUser);
     }

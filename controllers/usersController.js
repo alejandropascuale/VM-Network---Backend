@@ -8,7 +8,7 @@ const controller = {
         return res.redirect('http://localhost:3000/');
     },
     updateUser: async (req, res) => {
-        await (await fetch('http://localhost:3001/api/users/edit/:iduser')).json();
+        await (await fetch('http://localhost:3001/api/users/edit/:idEmployee')).json();
         return res.redirect('http://localhost:3000/');
     }
 }
