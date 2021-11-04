@@ -10,7 +10,7 @@ router.post('/register', userApiController.createUser);
 // Login user
 router.post('/Login', userApiController.loginUser);
 // Edit user
-router.put('/edit/:iduser', userApiController.loginUser);
+router.put('/edit/:iduser', userApiController.updateUser);
 // get all receipts from user
 router.get('/receipts/:idEmployee', userApiController.receiptsUser);
 

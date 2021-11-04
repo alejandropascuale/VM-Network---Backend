@@ -33,26 +33,16 @@ const controller = {
         }
     },
     updateUser: async (req, res) => {
-        if (req.file) {
-            const editUser = await db.User.update({
-                names: req.body.names,   
-                userName: req.body.userName,   
-                password: bcrypt.hashSync(req.body.password, 10),
-                avatar: '/images/avatars/'+req.file.filename
-            },
-            { where: {iduser: req.params.iduser}
-        })
-        return res.json(editUser);
-    } else {
-        let editUser = await db.User.update({
+        const password = bcrypt.hashSync(req.body.password, 10);
+        await db.User.update({
             names: req.body.names,   
             userName: req.body.userName,   
-            password: bcrypt.hashSync(req.body.password, 10)
+            password: password
         },
-        { where: {iduser: req.params.idusers}
+        { where: {idusers: req.params.iduser}
         })
-        return res.json(editUser);
-    }   
+        res.cookie('userName', req.body.userName, { maxAge: (1000 * 60) * 60 })
+        return res.redirect('http://localhost:3000');
     },
     receiptsUser: async (req, res) => {
         const receiptsUser = await db.Receipts.findAll({
