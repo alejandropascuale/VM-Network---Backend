@@ -14,9 +14,9 @@ const API_KEY = 'alegpascuale@gmail.com_92f7ee24b2b123c00e7e639fc645d9e5780d';
 
 
 // Source PDF file to split
-const SourceFile = "./BERLI JORGE - Recibos de Sueldos 2021-07.pdf";
+const SourceFile = "./VM - Recibos de Sueldos 2021-10.pdf";
 // Split Search String
-const SplitText = "SCIUTO , Mónica Beatriz";
+const SplitText = "PASCUALE , ALEJANDRO GASTON";
 
 // Prepare URL for `Split PDF By Text` API endpoint
 var query = `https://api.pdf.co/v1/pdf/split2`;

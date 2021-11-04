@@ -5,5 +5,7 @@ const userController = require('../controllers/usersController')
 
 /* POST create user */
 router.post('/register', userController.createUser)
+/* EDIT user */
+router.put('/edit/:iduser', userController.updateUser)
 
 module.exports = router;

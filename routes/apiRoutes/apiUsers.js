@@ -9,5 +9,9 @@ router.get('/', userApiController.listUsers);
 router.post('/register', userApiController.createUser);
 // Login user
 router.post('/Login', userApiController.loginUser);
+// Edit user
+router.put('/edit/:iduser', userApiController.loginUser);
+// get all receipts from user
+router.get('/receipts/:iduser', userApiController.receiptsUser);
 
 module.exports = router;

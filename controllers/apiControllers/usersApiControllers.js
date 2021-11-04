@@ -31,6 +31,34 @@ const controller = {
                 return res.redirect('http://localhost:3000');
             }
         }
+    },
+    updateUser: async (req, res) => {
+        if (req.file) {
+            const editUser = await db.User.update({
+                names: req.body.names,   
+                userName: req.body.userName,   
+                password: bcrypt.hashSync(req.body.password, 10),
+                avatar: '/images/avatars/'+req.file.filename
+            },
+            { where: {iduser: req.params.iduser}
+        })
+        return res.json(editUser);
+    } else {
+        let editUser = await db.User.update({
+            names: req.body.names,   
+            userName: req.body.userName,   
+            password: bcrypt.hashSync(req.body.password, 10)
+        },
+        { where: {iduser: req.params.iduser}
+        })
+        return res.json(editUser);
+    }   
+    },
+    receiptsUser: async (req, res) => {
+        const receiptsUser = await db.Receipts.findAll({
+            where: {id_user: req.params.iduser}
+        })
+        return res.json(receiptsUser);
     }
 }
 
