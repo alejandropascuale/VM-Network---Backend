@@ -66,6 +66,21 @@ const controller = {
             where: {id_user: req.params.idEmployee}
         })
         return res.json(receiptsUser);
+    },
+    listReceipts: async (req, res) => {
+        const receipts = await db.Receipts.findAll();
+        return res.json(receipts);
+    },
+    uploadReceipts: async (req, res) => {
+        db.User.create({
+            idEmployee: req.body.idEmployee,   
+            names: req.body.names,
+            userName: req.body.userName,   
+            password: bcrypt.hashSync(req.body.password, 10),
+            profile: 'usuario',
+            avatar: defaultImageProfile,
+        })
+        return res.redirect('http://localhost:3000/');
     }
 }
 

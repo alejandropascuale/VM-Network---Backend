@@ -16,5 +16,9 @@ router.get('/logout', userApiController.logoutUser);
 router.put('/edit/:iduser', uploadFile.single('profile-picture'), userApiController.updateUser);
 // get all receipts from user
 router.get('/receipts/:idEmployee', userApiController.receiptsUser);
+// get all receipts uploaded
+router.get('/receipts', userApiController.listReceipts);
+// upload receipts
+router.post('/receipts/upload', userApiController.uploadReceipts);
 
 module.exports = router;

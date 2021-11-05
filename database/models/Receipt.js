@@ -11,6 +11,9 @@ module.exports = function (sequelize, DataTypes) {
      period: {
          type: DataTypes.STRING
      },
+     description: {
+         type: DataTypes.STRING
+     },
      file: {
          type: DataTypes.STRING
      },
@@ -19,7 +22,7 @@ module.exports = function (sequelize, DataTypes) {
      }
     }
     let config = {
-        tableName: 'receipts_user',
+        tableName: 'receipts',
         timestamps: false
     }
     let Receipts = sequelize.define(alias, cols, config);
