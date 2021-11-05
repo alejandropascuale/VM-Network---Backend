@@ -6,10 +6,6 @@ const controller = {
     createUser: async (req, res) => {
         await (await fetch('http://localhost:3001/api/users/register')).json();
         return res.redirect('http://localhost:3000/');
-    },
-    updateUser: async (req, res) => {
-        await (await fetch('http://localhost:3001/api/users/edit/')).json();
-        return res.redirect('http://localhost:3000/');
     }
 }
 

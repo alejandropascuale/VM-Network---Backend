@@ -32,17 +32,34 @@ const controller = {
             }
         }
     },
-    updateUser: async (req, res) => {
-        const password = bcrypt.hashSync(req.body.password, 10);
-        await db.User.update({
-            names: req.body.names,   
-            userName: req.body.userName,   
-            password: password
-        },
-        { where: {idusers: req.params.iduser}
-        })
-        res.cookie('userName', req.body.userName, { maxAge: (1000 * 60) * 60 })
-        return res.redirect('http://localhost:3000');
+    logoutUser: async (req, res) => {
+		res.clearCookie('userName');
+		req.session.destroy();
+		return res.redirect('http://localhost:3000/');
+	},
+    updateUser:  async (req, res) => {
+        if (req.file) {
+            await db.User.update({
+                names: req.body.names,   
+                userName: req.body.userName,   
+                password: bcrypt.hashSync(req.body.password, 10),
+                avatar: '/images/avatars/'+req.file.filename
+            },
+            { where: {idusers: req.params.iduser}
+            })
+            res.cookie('userName', req.body.userName, { maxAge: (1000 * 60) * 60 })
+            return res.redirect('http://localhost:3000');
+        } else {
+            await db.User.update({
+                names: req.body.names,   
+                userName: req.body.userName,   
+                password: bcrypt.hashSync(req.body.password, 10)
+            },
+            { where: {idusers: req.params.iduser}
+            })
+            res.cookie('userName', req.body.userName, { maxAge: (1000 * 60) * 60 })
+            return res.redirect('http://localhost:3000');
+        }
     },
     receiptsUser: async (req, res) => {
         const receiptsUser = await db.Receipts.findAll({

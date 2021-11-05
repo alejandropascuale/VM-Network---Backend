@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 app.use(session({
-  secret: 'Clave secreta',
+  secret: 'Contraseña especial para VM network',
   resave: true,
   saveUninitialized: true
 }));
