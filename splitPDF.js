@@ -10,7 +10,7 @@ var request = require("request");
 
 // The authentication key (API Key).
 // Get your own by registering at https://app.pdf.co
-const API_KEY = 'alegpascuale@gmail.com_92f7ee24b2b123c00e7e639fc645d9e5780d';
+const API_KEY = 'apascuale@outlook.com_67c673bc4963fe8b5feba31a3220ed9d0100';
 
 
 // Source PDF file to split

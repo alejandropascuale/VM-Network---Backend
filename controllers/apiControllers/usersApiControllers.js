@@ -2,6 +2,7 @@ const db = require ('../../database/models');
 const { Op } = require("sequelize");
 const bcrypt = require('bcryptjs');
 
+
 const controller = {
     listUsers: async (req, res) => {
         const usersApi = await db.User.findAll();
@@ -71,16 +72,15 @@ const controller = {
         const receipts = await db.Receipts.findAll();
         return res.json(receipts);
     },
-    uploadReceipts: async (req, res) => {
-        db.User.create({
-            idEmployee: req.body.idEmployee,   
-            names: req.body.names,
-            userName: req.body.userName,   
-            password: bcrypt.hashSync(req.body.password, 10),
-            profile: 'usuario',
-            avatar: defaultImageProfile,
+    uploadReceipts: (req, res) => {
+        /* db.User.create({
+            period: req.body.period,
+            description: req.body.description,   
+            file: req.body.receipts
         })
-        return res.redirect('http://localhost:3000/');
+        return res.redirect('http://localhost:3000/'); */
+        console.log(req.body, req.file);
+        return res.redirect('http://localhost:3000');
     }
 }
 

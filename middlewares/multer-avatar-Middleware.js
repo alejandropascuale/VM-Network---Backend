@@ -11,6 +11,6 @@ const storage = multer.diskStorage ({
     cb (null, newFileName);
   }
 })
-const uploadFile = multer({ storage });
+const uploadAvatar = multer({ storage });
 
-module.exports = uploadFile;
+module.exports = uploadAvatar;
