@@ -73,14 +73,18 @@ const controller = {
         return res.json(receipts);
     },
     uploadReceipts: (req, res) => {
-        /* db.User.create({
-            period: req.body.period,
-            description: req.body.description,   
-            file: req.body.receipts
-        })
-        return res.redirect('http://localhost:3000/'); */
-        console.log(req.body, req.file);
-        return res.redirect('http://localhost:3000');
+        console.log(req.body);
+        return res.send(req.body);
+        /* for (let i = 0; i < req.body.length; i++) {
+            const receipt = req.body[i]    
+            await db.Receipt.create({
+                period: receipt.period,
+                description: receipt.description,   
+                file: receipt.file,
+                id_user: receipt.body.id_user
+            })
+        }
+        return res.redirect('http://localhost:3000'); */
     }
 }
 

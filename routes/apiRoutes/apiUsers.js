@@ -20,6 +20,6 @@ router.get('/receipts/:idEmployee', userApiController.receiptsUser);
 // get all receipts uploaded
 router.get('/receipts', userApiController.listReceipts);
 // upload receipts
-router.post('/receipts/upload', uploadReceipts.single('receipts'),userApiController.uploadReceipts);
+router.post('/receipts/upload', userApiController.uploadReceipts);
 
 module.exports = router;
