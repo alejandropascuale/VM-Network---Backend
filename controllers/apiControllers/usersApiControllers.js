@@ -1,6 +1,7 @@
 const db = require ('../../database/models');
 const { Op } = require("sequelize");
 const bcrypt = require('bcryptjs');
+const fetch = require('fetch-node');
 
 
 const controller = {
@@ -72,19 +73,23 @@ const controller = {
         const receipts = await db.Receipts.findAll();
         return res.json(receipts);
     },
-    uploadReceipts: (req, res) => {
-        console.log(req.body);
-        return res.send(req.body);
-        /* for (let i = 0; i < req.body.length; i++) {
-            const receipt = req.body[i]    
-            await db.Receipt.create({
+    uploadReceipts: async (req, res) => {
+        const receipts = req.body;
+        const apiReceipts = await (await fetch('http://localhost:3001/api/receipts')).json();
+        const lastId = apiReceipts.lenght;
+        console.log(lastId);
+        for (let i = 0; i < receipts.length; i++) {
+            const receipt = receipts[i];
+            console.log(receipt);
+            /* db.Receipts.create({
+                idReceipts: lastId +(1+i),
                 period: receipt.period,
                 description: receipt.description,   
                 file: receipt.file,
-                id_user: receipt.body.id_user
-            })
+                id_user: receipt.id_user
+            }) */
         }
-        return res.redirect('http://localhost:3000'); */
+        return res.json(receipts);
     }
 }
 

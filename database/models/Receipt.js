@@ -18,7 +18,7 @@ module.exports = function (sequelize, DataTypes) {
          type: DataTypes.STRING
      },
      id_user: {
-         type: DataTypes.STRING
+         type: DataTypes.INTEGER
      }
     }
     let config = {
